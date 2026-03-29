@@ -65,13 +65,13 @@ export const Navbar = () => {
                   <span className="text-sm font-bold text-gray-900 dark:text-white">{user.email?.split('@')[0]}</span>
                   <span className="text-xs text-gray-500 capitalize">{user.role}</span>
                 </div>
-                <button
-                  onClick={() => setUser(null)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 transition"
-                  title="Logout"
+                <Link
+                  href="/profile"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-900/60 transition shadow-sm"
+                  title="Profile"
                 >
                   <User size={20} />
-                </button>
+                </Link>
                 {user.role === "admin" && (
                   <Link href="/dashboard" className="hidden lg:flex px-4 py-2 text-sm font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-900/40 rounded-full transition">
                     Dashboard
@@ -87,7 +87,7 @@ export const Navbar = () => {
                   Log in
                 </Link>
                 <Link
-                  href="/login"
+                  href="/register"
                   className="px-5 py-2 text-sm font-bold text-white bg-black dark:bg-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-100 shadow-md transition transform hover:-translate-y-0.5"
                 >
                   Sign up
@@ -99,17 +99,27 @@ export const Navbar = () => {
       </div>
 
       {/* Categories Bar */}
-      <div className="border-t border-gray-100 dark:border-gray-800 bg-white/50 dark:bg-gray-950/50 hidden md:block">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ul className="flex items-center gap-8 py-2.5 overflow-x-auto no-scrollbar text-sm font-medium text-gray-600 dark:text-gray-400">
-            {['All Categories', 'Electronics', 'Fashion', 'Home & Garden', 'Sports', 'Motors', 'Collectibles', 'Deals'].map((cat) => (
-              <li key={cat}>
-                <button className="whitespace-nowrap hover:text-black dark:hover:text-white transition-colors relative group">
-                  {cat}
-                  <span className="absolute -bottom-2.5 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all group-hover:w-full"></span>
-                </button>
-              </li>
-            ))}
+      <div className="border-t border-gray-100 dark:border-gray-800 bg-white/50 dark:bg-gray-950/50 hidden md:flex">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+          <ul className="flex items-center gap-10 py-3 overflow-x-auto no-scrollbar text-sm font-bold text-gray-700 dark:text-gray-300">
+            <li>
+              <Link href="/" className="hover:text-black dark:hover:text-white transition-colors relative group py-1 flex items-center gap-2">
+                🏠 Marketplace
+                <span className="absolute -bottom-3 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all group-hover:w-full"></span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/wishlist" className="hover:text-red-500 transition-colors flex items-center gap-2 relative group py-1">
+                ❤️ Wishlist
+                <span className="absolute -bottom-3 left-0 w-0 h-0.5 bg-red-500 transition-all group-hover:w-full"></span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/my-listings" className="hover:text-blue-600 transition-colors flex items-center gap-2 relative group py-1">
+                🔑 My Listings
+                <span className="absolute -bottom-3 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

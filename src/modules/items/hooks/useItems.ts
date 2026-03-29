@@ -1,26 +1,25 @@
+import { useStore } from "@/store/useStore";
 import { useEffect, useState } from "react";
-import { getItems } from "@/services/itemService";
 
 export const useItems = () => {
-  const [items, setItems] = useState<any[]>([]);
+  const properties = useStore((state) => state.properties);
+  const fetchProperties = useStore((state) => state.fetchProperties);
+  const deleteProperty = useStore((state) => state.deleteProperty);
   const [loading, setLoading] = useState(true);
-
+  
   const fetchItems = async () => {
     setLoading(true);
-    try {
-      // Hit the real Next.js API through Axios
-      const data = await getItems();
-      setItems(data);
-    } catch (error) {
-      console.error("Failed to fetch items:", error);
-    } finally {
-      setLoading(false);
-    }
+    await fetchProperties();
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchItems();
   }, []);
 
-  return { items, loading, fetchItems };
+  return { 
+    items: properties, 
+    loading, 
+    fetchItems 
+  };
 };

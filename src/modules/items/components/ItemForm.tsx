@@ -3,7 +3,9 @@
 import { useState, FormEvent } from "react";
 import { appConfig } from "@/config/appConfig";
 import { DynamicField } from "@/components/shared/DynamicField";
-import { createItem, updateItem } from "@/services/itemService"; 
+
+import { useStore } from "@/store/useStore";
+import toast from "react-hot-toast";
 
 type Props = {
   initialData?: Record<string, any>;
@@ -44,17 +46,20 @@ export const ItemForm = ({ initialData = {}, onSuccess }: Props) => {
         }
       }
 
-      // Execute actual POST/PUT request via Axios
+      // Execute Zustand store mutation explicitly for local persistence
       if (formData.id) {
-        await updateItem(formData);
+        await useStore.getState().updateProperty(formData.id, formData);
+        toast.success("Property updated natively!");
       } else {
-        await createItem(formData);
-        setFormData({}); // Need to clear form if creating new item
+        await useStore.getState().addProperty(formData as any);
+        toast.success("New property published!");
+        setFormData({}); // Clear form if creating new item
       }
       
       onSuccess?.();
     } catch (err: any) {
       setError(err.message || "Something went wrong while saving the item.");
+      toast.error(err.message || "Failed to save");
     } finally {
       setLoading(false);
     }
