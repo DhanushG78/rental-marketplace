@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { itemsDb } from '@/lib/memoryDb';
 import { BaseItem } from '@/modules/items';
 
@@ -51,6 +51,7 @@ export async function POST(req: Request) {
   }
 }
 
+
 export async function PUT(req: Request) {
   const body = await req.json();
 
@@ -60,7 +61,7 @@ export async function PUT(req: Request) {
     itemsDb[index] = { ...itemsDb[index], ...body };
   }
 
-  return Response.json({ success: true, item: itemsDb[index] });
+  return NextResponse.json({ success: true, item: itemsDb[index] });
 }
 
 export async function DELETE(req: Request) {

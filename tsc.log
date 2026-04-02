@@ -1,0 +1,3 @@
+﻿src/modules/items/components/ItemList.tsx(24,27): error TS2339: Property 'error' does not exist on type '{ items: Property[]; loading: boolean; fetchItems: () => Promise<void>; }'.
+src/modules/items/components/ItemList.tsx(24,34): error TS2339: Property 'refetch' does not exist on type '{ items: Property[]; loading: boolean; fetchItems: () => Promise<void>; }'.
+src/modules/items/components/ItemList.tsx(24,55): error TS2554: Expected 0 arguments, but got 1.

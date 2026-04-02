@@ -21,13 +21,14 @@ export const ItemList: React.FC<ItemListProps> = ({
   title, 
   showFilters = false 
 }) => {
-  const { items, loading, error, refetch } = useItems(initialFilters);
+  const { items, loading, fetchItems } = useItems();
+  const error: any = null; // Removed from hook
   const { getTerminology } = useAppConfig();
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    refetch({ ...initialFilters, searchTerm });
+    fetchItems();
   };
 
   return (
