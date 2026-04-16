@@ -105,13 +105,4 @@ src/
 └── types/          # Global TypeScript interfaces
 ```
 
----
 
-## 📄 License
-This project is licensed under the MIT License.
-
----
-
-<p align="center">
-  MADE BY ANTIGRAVITY 🚀
-</p>
